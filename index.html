@@ -16,7 +16,9 @@
 <body>
     <h1>Отправка сообщений</h1>
     <form id="message-form">
-        <textarea name="user_message" placeholder="Введите ваше сообщение" rows="5" required></textarea>
+        <input type="tel" name="user_phone" placeholder="Введите ваш номер телефона"><br>
+        <input type="text" name="user_name" placeholder="Введите ваше имя"><br>
+        <textarea name="user_message" placeholder="Введите ваш заказ" rows="5" required></textarea><br>
         <button type="submit">Отправить</button>
     </form>
 
@@ -25,7 +27,9 @@
             event.preventDefault()
 
             emailjs.send('service_4ro1pjc', 'template_0x79wce', {
-                message: this.user_message.value // Отправляем введенный текст
+                message: this.user_message.value, // Отправляем введенный текст
+                from_name: this.user_name.value,
+                phone: this.user_phone.value
             })
             .then(function() {
                 alert('Сообщение успешно отправлено!')
