@@ -1,31 +1,116 @@
+* {
+    outline: none;
+}
+
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(background.jpg);
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d4d4d4;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #ffa81b;
+    width: 1000px;
+    height: 650px;
+    background-color: #fff;
+    border-radius: 13px;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.box {
-    background-color: #000000be;
-    width: 300px;
-    color: #fff;
-    padding: 20px;
+.goods {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 10px;
+    flex-direction: row;
 }
 
-input, textarea {
+.pizza {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    outline: 3px solid #ffa81b;
+    color: #000;
+    font-size: 17px;
+}
+
+input {
+    border: 1px solid #ffa81b;
+    width: 100px;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+input[type="tel"], input[type="text"] {
+    height: 25px;
     width: 200px;
-    background-color: #ffffff;
-    margin: 5px;
-    border: 2px solid #7e7e7e;
+    font-size: 17px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.5);
+    margin: 10px;
+}
+
+#vetchina-i-sir {
+    background-image: url(vetchinasir.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+}
+
+#gavaiskaya {
+    background-image: url(gavai.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+}
+
+#pepperoni {
+    background-image: url(pepperoni.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+}
+
+label, p {
+    font-size: 17px;
 }
 
 button {
-    width: 220px;
+    width: 200px;
+    height: 50px;
+    font-size: 17px;
     cursor: pointer;
+    background-color: #ffa81b;
+    border-radius: 15px;
+    border: none;
+}
+
+button:hover {
+    background-color: #ab6b05;
+    color: #fff;
+    transition: 0.3s;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отправка сообщений</title>
+    <title>Заказ пиццы</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
@@ -18,10 +18,36 @@
     <div class="box">
         <h1>Заказ пиццы</h1>
         <form id="message-form">
-            <input type="tel" name="user_phone" placeholder="Введите ваш номер телефона"><br>
-            <input type="text" name="user_name" placeholder="Введите ваше имя"><br>
-            <textarea name="user_message" placeholder="Введите ваш заказ" rows="5" required></textarea><br>
-            <button type="submit">Заказать</button>
+            <label for="user_phone">Введите ваш номер телефона: +7</label>
+            <input type="tel" name="user_phone" placeholder="XXX XXX XX XX" required><br>
+            <label for="user_name">Введите ваше имя:</label>
+            <input type="text" name="user_name" placeholder="" required><br><br><br>
+
+            <div class="goods">
+                <div class="pizza">
+                    <div id="pepperoni"></div>
+                    <p class="pizza-info">Пепперони (30 см) - 699₽</p>
+                    <div class="checkbox">
+                        <input type="checkbox" class="pizza-order" name="Пепперони (699)">
+                    </div>
+                </div>
+                <div class="pizza">
+                    <div id="gavaiskaya"></div>
+                    <p class="pizza-info">Гавайская (30 см) - 699₽</p>
+                    <div class="checkbox">
+                        <input type="checkbox" class="pizza-order" name="Гавайская (699)">
+                    </div>
+                </div>
+                <div class="pizza">
+                    <div id="vetchina-i-sir"></div>
+                    <p class="pizza-info">Ветчина и сыр (30 см) - 649₽</p>
+                    <div class="checkbox">
+                        <input type="checkbox" class="pizza-order" name="Ветчина и сыр (649)">
+                    </div>
+                </div>
+            </div><br><br><br>
+
+            <button type="submit">Оформить заказ</button>
         </form>
     </div>
 
@@ -29,16 +55,30 @@
         document.getElementById('message-form').addEventListener('submit', function(event) {
             event.preventDefault()
 
-            emailjs.send('service_4ro1pjc', 'template_0x79wce', {
-                message: this.user_message.value, // Отправляем введенный текст
-                from_name: this.user_name.value,
-                phone: this.user_phone.value
-            })
-            .then(function() {
-                alert('Сообщение успешно отправлено!')
-            }, function(error) {
-                alert('Ошибка при отправке сообщения: ' + JSON.stringify(error))
-            })
+            var checkboxes = document.getElementsByClassName('pizza-order')
+            var checkboxesChecked = []
+
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkboxesChecked.push(checkboxes[i].value);
+                }
+            }
+
+            if (checkboxesChecked.length !== 0) {
+                emailjs.send('service_4ro1pjc', 'template_0x79wce', {
+                    from_name: this.user_name.value,
+                    phone: this.user_phone.value,
+                    order: checkboxesChecked
+                })
+                .then(function() {
+                    alert('Вы успешно сделали заказ!')
+                }, function(error) {
+                    alert('Ошибка при отправке сообщения: ' + JSON.stringify(error))
+                })
+            }
+            else {
+                alert("Введите ваш заказ!")
+            }
         })
     </script>
 </body>
